@@ -1,4 +1,4 @@
-mport gspread
+import gspread
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -12,8 +12,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('calculate_resistance')
 
-voltage = SHEET.worksheet('v')
+vi = SHEET.worksheet('vi')
 
-data = voltage.get_all_values()
+data = vi.get_all_values()
 
 print(data)
