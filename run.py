@@ -12,8 +12,15 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('calculate_resistance')
 
-vi = SHEET.worksheet('vi')
+def get_vi_data():
+    """
+    Get the voltage and current data from the user
+    """
+    print("Please put in the voltage and current data from your experiment")
+    print("Data should be two numbers separated with commas.") 
+    print("e.g. 2, 0.8")    
 
-data = vi.get_all_values()
-
-print(data)
+    data_str = input("Enter your data here:")
+    print(f"The data entered is {data_str}")
+    
+get_vi_data()
