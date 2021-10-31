@@ -21,6 +21,24 @@ def get_vi_data():
     print("e.g. 2, 0.8")    
 
     data_str = input("Enter your data here:")
-    print(f"The data entered is {data_str}")
     
+    vi_data = data_str.split(",")
+    validate_data(vi_data)
+    
+
+def validate_data(values):
+    """
+    In the try, converts string values into numbers, integers or floats,
+    if strings can not be convereted or there are more than two input, it raises error.
+    """
+    try: 
+        if len(values) != 2:
+            raise ValueError(
+              f"Exactly two values required, you entered {len(values)}"
+        )
+    except ValueError as e:
+        print(f"Invalid data:{e}, please try again.\n")
+
 get_vi_data()
+
+
