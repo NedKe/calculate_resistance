@@ -32,6 +32,7 @@ def validate_data(values):
     if strings can not be convereted or there are more than two input, it raises error.
     """
     try: 
+        [float(value) for value in values]
         if len(values) != 2:
             raise ValueError(
               f"Exactly two values required, you entered {len(values)}"
