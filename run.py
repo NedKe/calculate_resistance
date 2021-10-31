@@ -14,7 +14,9 @@ SHEET = GSPREAD_CLIENT.open('calculate_resistance')
 
 def get_vi_data():
     """
-    Get the voltage and current data from the user
+    Get the voltage and current data from the user.
+    Run while loop to collect valid string data from user input in the terminal that should be 2 numbers 
+    separated by commas.The loop repeats and stops when data is valid.
     """
     while True:
         print("Please put in the voltage and current data from your experiment")
@@ -48,6 +50,22 @@ def validate_data(values):
         return False
     
     return True
+
+
+def update_vi_worksheet(data):
+    """
+    Update the vi worksheet with the values entered by the user.
+    """
+    print("updating vi worksheet with entered data...\n")
+    vi_worksheet = SHEET.worksheet("vi")
+    vi_worksheet.append_row(data)
+    print("vi worksheet updates successfuly.\n")
+
+
 data = get_vi_data()
+vi_data = [float(num) for num in data]
+update_vi_worksheet(vi_data)
+
+
 
 
