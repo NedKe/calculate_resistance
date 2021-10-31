@@ -16,14 +16,20 @@ def get_vi_data():
     """
     Get the voltage and current data from the user
     """
-    print("Please put in the voltage and current data from your experiment")
-    print("Data should be two numbers separated with commas.") 
-    print("e.g. 2, 0.8")    
+    while True:
+        print("Please put in the voltage and current data from your experiment")
+        print("Data should be two numbers separated with commas.") 
+        print("e.g. 2, 0.8")    
 
-    data_str = input("Enter your data here:")
+        data_str = input("Enter your data here:")
     
-    vi_data = data_str.split(",")
-    validate_data(vi_data)
+        vi_data = data_str.split(",")
+
+        if validate_data(vi_data): 
+            print("Data is valid")
+            break
+
+    return vi_data
     
 
 def validate_data(values):
@@ -39,7 +45,9 @@ def validate_data(values):
         )
     except ValueError as e:
         print(f"Invalid data:{e}, please try again.\n")
-
-get_vi_data()
+        return False
+    
+    return True
+data = get_vi_data()
 
 
